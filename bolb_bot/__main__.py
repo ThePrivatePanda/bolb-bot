@@ -17,12 +17,13 @@ load_dotenv()
 intents = Intents.none()
 intents.guilds = True
 intents.messages = True
+intents.message_content = True
 
 
 class MyBot(BotBase):
     db: Connection
 
-    async def startup(self, *args, **kwargs):
+    async def start(self, *args, **kwargs):
         self.db = await connect("db/bolb.db")
 
         await self.db.execute(
@@ -35,7 +36,7 @@ class MyBot(BotBase):
         )
         await self.db.commit()
 
-        await super().startup(*args, **kwargs)
+        await super().start(*args, **kwargs)
 
 
 ids = getenv("OWNER_IDS")
