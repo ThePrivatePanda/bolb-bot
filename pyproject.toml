@@ -2,7 +2,7 @@
 name = "bolb-bot"
 version = "0.1.0"
 description = "Why, It's the bolb bot!"
-authors = ["ooliver1 <oliverwilkes2006@icloud.com>", "Sham <thesham@protonmail.com>", "koala9712 <party.mittal@gmail.com>"]
+authors = ["ooliver1 <oliverwilkes2006@icloud.com>", "Sham <thesham@protonmail.com>", "ThePrivatePanda <party.mittal@gmail.com>"]
 license = "AGPL3"
 
 [tool.poetry.dependencies]
