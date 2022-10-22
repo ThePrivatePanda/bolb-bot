@@ -17,6 +17,7 @@ load_dotenv()
 intents = Intents.none()
 intents.guilds = True
 intents.messages = True
+intents.message_content = True
 
 
 class MyBot(BotBase):
