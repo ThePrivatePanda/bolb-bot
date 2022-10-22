@@ -144,7 +144,7 @@ class Bolb(Cog, name="bolb", description="Mess with some bolbs!"):
             )
             .set_author(
                 name="Top bolb users",
-                url="https://github.com/koala9712/bolb-bot",
+                url="https://github.com/ThePrivatePanda/bolb-bot",
                 icon_url=self.bot.user.display_avatar.url,
             )
             .add_field(name="Top 10 bolbs", value="\n".join(top_10))
