@@ -4,7 +4,7 @@ from datetime import datetime, timedelta, timezone
 from random import choices, randint
 from typing import TYPE_CHECKING
 
-from nextcord import Embed, Member
+from nextcord import Embed, Member, AllowedMentions
 from nextcord.ext.commands import Cog, Context, command
 from nextcord.utils import format_dt, utcnow
 
@@ -107,7 +107,8 @@ class Bolb(Cog, name="bolb", description="Mess with some bolbs!"):
         await self.bot.db.commit()
         await ctx.reply(
             f"You paid {user.mention} `{amount}` bolbs.\n"
-            f"You now have `{bolbs_before - amount}` bolbs"
+            f"You now have `{bolbs_before - amount}` bolbs",
+            allowed_mentions=AllowedMentions(users=False)
         )
 
     @command(description="See who has the most bolbs", aliases=["leaderboard"])
