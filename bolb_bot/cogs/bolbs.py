@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
 from random import choices, randint
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from nextcord import Embed, Member, AllowedMentions
 from nextcord.ext.commands import Cog, Context, command
@@ -19,17 +19,23 @@ class Bolb(Cog, name="bolb", description="Mess with some bolbs!"):
         self.bot = bot
 
     @command(description="Show your Bolb stats.", aliases=["bolb_amt", "bolbs"])
-    async def bolb(self, ctx: Context):
+    async def bolb(self, ctx: Context, user: Optional[Member] = None):
+        if not user:
+            user = ctx.author
         async with self.bot.db.execute(
-            "SELECT bolbs FROM bolb WHERE id=?", (ctx.author.id,)
+            "SELECT bolbs FROM bolb WHERE id=?", (user.id,)
         ) as c:
             row = await c.fetchone()
             amount = row[0] if row and row[0] else None
 
         if not amount:
-            await ctx.reply("You have no bolbs. Imagine")
+            await ctx.reply(
+                "You have" if not user else f"{user} has" " no bolbs. Imagine"
+            )
         else:
-            await ctx.reply(f"You have {amount} bolbs")
+            await ctx.reply(
+                f"You have" if not user else f"{user} has" f" {amount} bolbs"
+            )
 
     @command(description="Claim your daily bolbs", aliases=["dailyclaim"])
     async def daily(self, ctx: Context):
